@@ -3,13 +3,20 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                // Fixed the URL to point to your specific lab repository
+                // Pointing to your actual GitHub Lab repository
                 git branch: 'main', url: 'https://github.com/NoelNinanSheri1307/NoelNinanSheri-JenkinsLab.git'
             }
         }
-        stage('Print Message') {
+        stage('Create File') {
             steps {
-                echo 'Hello! Jenkins Pipeline executed successfully'
+                // Creates a file named demo.txt in the workspace
+                bat 'echo This file is created by Jenkins > demo.txt'
+            }
+        }
+        stage('Verify File') {
+            steps {
+                // Reads the file back to prove it was created
+                bat 'type demo.txt'
             }
         }
     }

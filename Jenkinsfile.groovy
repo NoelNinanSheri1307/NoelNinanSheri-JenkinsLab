@@ -3,20 +3,14 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                // Pointing to your actual GitHub Lab repository
+                // Pointing to your actual GitHub Lab repository and main branch
                 git branch: 'main', url: 'https://github.com/NoelNinanSheri1307/NoelNinanSheri-JenkinsLab.git'
             }
         }
-        stage('Create File') {
+        stage('Read File') {
             steps {
-                // Creates a file named demo.txt in the workspace
-                bat 'echo This file is created by Jenkins > demo.txt'
-            }
-        }
-        stage('Verify File') {
-            steps {
-                // Reads the file back to prove it was created
-                bat 'type demo.txt'
+                // 'type' is the Windows command to display file contents in the console
+                bat 'type README.md'
             }
         }
     }
